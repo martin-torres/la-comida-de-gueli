@@ -271,7 +271,7 @@ export const AdminModule = ({
   return (
     <AdminErrorBoundary>
       <AdminLayout
-        restaurantName={settings?.name || 'El Arrocito'}
+        restaurantName={settings?.name || 'La comida de Gueli'}
         onExit={onExit}
       >
         {(page: AdminPage) => renderPage(page)}

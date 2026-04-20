@@ -1,6 +1,6 @@
-# El Arrocito App
+# La comida de Gueli
 
-React + Vite PWA with PocketBase-backed data and database-driven theming for El Arrocito restaurant.
+React + Vite PWA with PocketBase-backed data and database-driven theming for La comida de Gueli restaurant.
 
 ## Current Runtime
 

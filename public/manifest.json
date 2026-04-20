@@ -1,7 +1,7 @@
 {
-  "name": "El Arrocito",
-  "short_name": "El Arrocito",
-  "description": "App de pedidos El Arrocito - Comida Mexicana",
+  "name": "La comida de Gueli",
+  "short_name": "Gueli",
+  "description": "App de pedidos La comida de Gueli - Comida Mexicana",
   "theme_color": "#f59e0b",
   "background_color": "#fdfcfb",
   "display": "standalone",

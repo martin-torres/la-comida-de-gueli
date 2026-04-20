@@ -36,7 +36,7 @@ interface AdminLayoutProps {
   onExit: () => void;
 }
 
-export const AdminLayout = ({ children, restaurantName = 'El Arrocito', onExit }: AdminLayoutProps) => {
+export const AdminLayout = ({ children, restaurantName = 'La comida de Gueli', onExit }: AdminLayoutProps) => {
   const [currentPage, setCurrentPage] = useState<AdminPage>('dashboard');
   const [sidebarOpen, setSidebarOpen] = useState(true);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
