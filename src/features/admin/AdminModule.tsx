@@ -65,10 +65,20 @@ export const AdminModule = ({
   }, [isAdmin, loadData]);
 
   const handlePinSubmit = async () => {
-    const correctPin = settings?.adminPin || '1234';
+    const correctPin = settings?.adminPin;
+    if (!correctPin) {
+      setPinError('PIN no configurado');
+      return;
+    }
     if (pinInput === correctPin) {
       try {
-        const authed = await adminAuth('admin@elarrocito.com', 'ElArrocito2024!');
+        const email = import.meta.env.VITE_ADMIN_EMAIL;
+        const password = import.meta.env.VITE_ADMIN_PASSWORD;
+        if (!email || !password) {
+          setPinError('Credenciales de administrador no configuradas');
+          return;
+        }
+        const authed = await adminAuth(email, password);
         if (authed) {
           setIsAdmin(true);
           setPinError('');
@@ -76,7 +86,6 @@ export const AdminModule = ({
           setPinError('Error de autenticación con base de datos');
         }
       } catch (error) {
-        console.error('Auth error:', error);
         setPinError('Error conectando a la base de datos');
       }
     } else {

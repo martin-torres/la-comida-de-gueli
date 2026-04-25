@@ -60,9 +60,6 @@ export interface Order {
 export interface CustomerInfo {
   name: string;
   address: string;
-  cardNumber: string;
-  expiry: string;
-  cvv: string;
 }
 
 export interface UiTextSettings {

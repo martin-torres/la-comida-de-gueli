@@ -453,7 +453,7 @@ export const CheckoutView = ({
             {deliveryType === 'domicilio' && (
               <input 
                 type="text" 
-                placeholder={settings?.locationText ? t('addressPlaceholderWithLocation', `Dirección de entrega en ${settings.locationText}`) : t('addressPlaceholder', 'Dirección de entrega')}
+                placeholder={settings?.locationText ? t('addressPlaceholderWithLocation', `Dirección de entrega en ${settings.locationText}`, { location: settings.locationText }) : t('addressPlaceholder', 'Dirección de entrega')}
                 className="w-full p-3 bg-gray-50 border border-gray-100 rounded-xl animate-in slide-in-from-top-2 font-medium text-sm"
                 value={customerInfo.address}
                 onChange={(e) => setCustomerInfo({...customerInfo, address: e.target.value})}

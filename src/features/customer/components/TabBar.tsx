@@ -22,12 +22,12 @@ export const TabBar: React.FC<TabBarProps> = ({
   }
 
   return (
-    <div className="flex overflow-x-auto gap-2 pb-4 no-scrollbar -mx-6 px-6">
+    <div className="grid grid-cols-3 gap-2 pb-4 -mx-6 px-6">
       {categories.map((category) => (
         <button
           key={category.code}
           onClick={() => onSelectCategory(category.code)}
-          className={`flex-shrink-0 px-4 py-2 rounded-full text-[10px] font-black uppercase tracking-wider transition-all ${
+          className={`px-3 py-2 rounded-full text-[10px] font-black uppercase tracking-wider transition-all text-center ${
             selectedCategory === category.code
               ? 'text-white shadow-md'
               : 'text-gray-400 hover:text-gray-600 hover:bg-gray-100'

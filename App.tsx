@@ -113,6 +113,7 @@ const App: React.FC = () => {
   const [kitchenUnlocked, setKitchenUnlocked] = useState(false);
   const [dashboardUnlocked, setDashboardUnlocked] = useState(false);
   const [kitchenLoading, setKitchenLoading] = useState(true);
+  const [navExpanded, setNavExpanded] = useState(false);
   const [customerInfo, setCustomerInfo] = useState<CustomerInfo>({
     name: '', address: '', cardNumber: '', expiry: '', cvv: ''
   });
@@ -385,22 +386,44 @@ const App: React.FC = () => {
           <div className="flex flex-col leading-none"><span className="font-black text-gray-900 uppercase italic tracking-tighter">{ui.name}</span><span className="text-[8px] font-bold uppercase tracking-[0.3em] mt-0.5" style={{ color: ui.secondaryColor }}>{ui.locationText}</span></div>
         </div>
         <div className="bg-gray-100 p-1 rounded-full flex gap-1">
-          {['customer', 'admin', 'data', 'dashboard'].map((mode) => (
-            <button key={mode} onClick={() => {
-              if (viewMode === 'admin') {
-                setKitchenUnlocked(false);
+          <button
+            onClick={() => {
+              if (viewMode !== 'customer') {
+                setViewMode('customer');
+              } else {
+                setNavExpanded(!navExpanded);
               }
-              if (viewMode === 'data') {
-                setAuthenticated(false);
-              }
-              if (viewMode === 'dashboard') {
-                setDashboardUnlocked(false);
-              }
-              setViewMode(mode as any);
-            }} className={`px-3 py-1.5 rounded-full text-[9px] font-black uppercase transition-all ${viewMode === mode ? 'bg-black shadow-sm' : 'text-gray-400'}`} style={viewMode === mode ? { color: ui.primaryColor } : undefined}>
-              {mode === 'customer' ? 'App' : mode === 'admin' ? 'Cocina' : mode === 'data' ? 'Data' : 'Admin'}
-            </button>
-          ))}
+            }}
+            className={`px-3 py-1.5 rounded-full text-[9px] font-black uppercase transition-all ${viewMode === 'customer' ? 'bg-black shadow-sm' : 'text-gray-400'}`}
+            style={viewMode === 'customer' ? { color: ui.primaryColor } : undefined}
+          >
+            App
+          </button>
+          {navExpanded && (
+            <>
+              {['admin', 'data', 'dashboard'].map((mode) => (
+                <button
+                  key={mode}
+                  onClick={() => {
+                    if (viewMode === 'admin') {
+                      setKitchenUnlocked(false);
+                    }
+                    if (viewMode === 'data') {
+                      setAuthenticated(false);
+                    }
+                    if (viewMode === 'dashboard') {
+                      setDashboardUnlocked(false);
+                    }
+                    setViewMode(mode as any);
+                  }}
+                  className={`px-3 py-1.5 rounded-full text-[9px] font-black uppercase transition-all ${viewMode === mode ? 'bg-black shadow-sm' : 'text-gray-400'}`}
+                  style={viewMode === mode ? { color: ui.primaryColor } : undefined}
+                >
+                  {mode === 'admin' ? 'Cocina' : mode === 'data' ? 'Data' : 'Admin'}
+                </button>
+              ))}
+            </>
+          )}
         </div>
       </div>
 

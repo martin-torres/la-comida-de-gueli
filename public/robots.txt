@@ -1,0 +1,8 @@
+User-agent: *
+Disallow: /admin/
+Disallow: /cocina/
+Disallow: /api/
+
+# OSINT Passive Reconnaissance
+# This robots.txt is public by design
+# No sensitive paths are exposed below
