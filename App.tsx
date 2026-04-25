@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import { Order, OrderItem, MenuItem, OrderStatus, CustomerInfo, PromoItem, AppSkinSettings } from './types';
 import { menuItemsApi, promosApi, ordersApi, settingsApi, subscribeToOrders } from './lib/pocketbase';
 import { useUrlMode } from './src/hooks/useUrlMode';
+import { useTranslations } from './src/hooks/useTranslations';
 import pb from './lib/pocketbase';
 import { calculateDeliveryFee, haversineKm } from './src/core/pricing';
 import { resolveUiSettings } from './src/core/uiSettings';
@@ -121,6 +122,8 @@ const App: React.FC = () => {
   // Weight-based modal state
   const [selectedWeightItem, setSelectedWeightItem] = useState<any>(null);
   const [showWeightModal, setShowWeightModal] = useState(false);
+
+  const { t } = useTranslations();
 
   const scrollRef = useRef<HTMLDivElement>(null);
 
@@ -468,7 +471,7 @@ const App: React.FC = () => {
       {viewMode === 'customer' && activeScreen !== 'tracking' && activeScreen !== 'checkout' && cart.length > 0 && (
         <div className="fixed bottom-6 left-1/2 -translate-x-1/2 w-full max-w-md px-6 z-40 animate-in slide-in-from-bottom-8">
           <button onClick={() => setActiveScreen('checkout')} className="w-full bg-black text-white p-5 rounded-2xl flex items-center justify-between shadow-2xl border-4 border-gray-800">
-            <div className="flex items-center gap-4"><div className="text-black px-3 py-1 rounded-lg font-black text-sm" style={{ backgroundColor: ui.primaryColor }}>{cart.length}</div><span className="font-black uppercase tracking-widest italic text-xs">{ui.uiText.cartButton}</span></div>
+            <div className="flex items-center gap-4"><div className="text-black px-3 py-1 rounded-lg font-black text-sm" style={{ backgroundColor: ui.primaryColor }}>{cart.length}</div><span className="font-black uppercase tracking-widest italic text-xs">{t('cartButton', ui.uiText.cartButton)}</span></div>
             <span className="text-2xl font-black italic" style={{ color: ui.primaryColor }}>${cartTotal}</span>
           </button>
         </div>

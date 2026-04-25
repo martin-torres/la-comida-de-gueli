@@ -49,6 +49,131 @@ const UI_DICTIONARY: Record<string, Record<SupportedLanguage, string>> = {
   cartButton: { es: 'Ver Carrito', en: 'View Cart', ko: '장바구니 보기' },
 };
 
+const CATEGORY_DICTIONARY: Record<string, Record<SupportedLanguage, string>> = {
+  promo: { es: 'Promociones', en: 'Promotions', ko: '프로모션' },
+  desayuno: { es: 'Desayunos', en: 'Breakfast', ko: '아침식사' },
+  comida: { es: 'Comidas', en: 'Meals', ko: '식사' },
+  arroz: { es: 'Arroces', en: 'Rice', ko: '밥' },
+  guisado: { es: 'Guisados', en: 'Stews', ko: '스튜' },
+  bebida: { es: 'Bebidas', en: 'Drinks', ko: '음료' },
+  antojito: { es: 'Antojitos', en: 'Snacks', ko: '간식' },
+  postre: { es: 'Postres', en: 'Desserts', ko: '디저트' },
+  extra: { es: 'Extras', en: 'Extras', ko: '추가' },
+};
+
+const ITEM_DESCRIPTION_DICTIONARY: Record<string, Record<SupportedLanguage, string>> = {
+  'Desayuno El Arrocito': {
+    es: 'Chilaquiles verdes o rojos, huevos al gusto, frijoles, arroz y tortillas',
+    en: 'Green or red chilaquiles, eggs to taste, beans, rice and tortillas',
+    ko: '녹색 또는 빨간 칠라킬레, 취향대로 계란, 콩, 밥과 토르티야',
+  },
+  'Huevos Rancheros': {
+    es: 'Huevos fritos sobre tortilla con salsa ranchera, frijoles y arroz',
+    en: 'Fried eggs on tortilla with ranchera sauce, beans and rice',
+    ko: '란체라 소스를 곁들인 토르티야 위의 계란후라이, 콩과 밥',
+  },
+  'Chilaquiles con Huevo': {
+    es: 'Tortilla frita con salsa verde o roja, crema, queso y huevo',
+    en: 'Fried tortilla with green or red sauce, cream, cheese and egg',
+    ko: '녹색 또는 빨간 소스를 곁들인 튀긴 토르티야, 크림, 치즈와 계란',
+  },
+  'Arroz a la Tumbada': {
+    es: 'Arroz rojo con mariscos y camarones, servido con limón y salsa',
+    en: 'Red rice with seafood and shrimp, served with lemon and sauce',
+    ko: '해산물과 새우를 곁들인 빨간 밥, 레몬과 소스 제공',
+  },
+  'Arroz con Pollo': {
+    es: 'Arroz rojo con pollo deshebrado y verduras',
+    en: 'Red rice with shredded chicken and vegetables',
+    ko: '찢은 닭고기와 야채를 곁들인 빨간 밥',
+  },
+  'Arroz con Carne': {
+    es: 'Arroz rojo con carne de res en trozos y verduras',
+    en: 'Red rice with beef chunks and vegetables',
+    ko: '쇠고기 덩어리와 야채를 곁들인 빨간 밥',
+  },
+  'Mole Poblano': {
+    es: 'Pollo en mole poblano con arroz, frijoles y tortillas',
+    en: 'Chicken in poblano mole with rice, beans and tortillas',
+    ko: '쌀, 콩, 토르티야를 곁들인 폴라노 몰레 치킨',
+  },
+  'Bistec a la Mexicana': {
+    es: 'Bistec con salsa de jitomate, cebolla, chile y guacamole',
+    en: 'Steak with tomato sauce, onion, chili and guacamole',
+    ko: '토마토 소스, 양파, 칠리와 과카몰리를 곁들인 스테이크',
+  },
+  'Cochinita Pibil': {
+    es: 'Cerdo marinado en achiote, servido con cebolla morada y habanero',
+    en: 'Pork marinated in achiote, served with purple onion and habanero',
+    ko: '아치오테에 절인 돼지고기, 보라색 양파와 하바네로 제공',
+  },
+  'Coca-Cola 350ml': {
+    es: 'Refresco de cola 350ml',
+    en: 'Cola soda 350ml',
+    ko: '콜라 350ml',
+  },
+  'Coca-Cola 600ml': {
+    es: 'Refresco de cola 600ml',
+    en: 'Cola soda 600ml',
+    ko: '콜라 600ml',
+  },
+  'Agua Natural': {
+    es: 'Agua natural 1L',
+    en: 'Natural water 1L',
+    ko: '생수 1L',
+  },
+  'Agua de Horchata': {
+    es: 'Agua de horchata preparada en casa',
+    en: 'Homemade horchata water',
+    ko: '집에서 만든 오르차타 음료',
+  },
+  'Agua de Jamaica': {
+    es: 'Agua de jamaica natural',
+    en: 'Natural jamaica water',
+    ko: '천연 하이비스커스 음료',
+  },
+  'Tacos de Canasta (3 pzs)': {
+    es: 'Tacos de frijol, papa o chicharrón',
+    en: 'Bean, potato or pork rind tacos',
+    ko: '콩, 감자 또는 돼지껍질 타코',
+  },
+  'Quesadilla de Flor de Calabaza': {
+    es: 'Quesadilla hecha a mano con queso Oaxaca',
+    en: 'Handmade quesadilla with Oaxaca cheese',
+    ko: '와하카 치즈를 곁들인 수제 퀘사디아',
+  },
+  'Gordita de Chicharrón': {
+    es: 'Gordita de maíz rellena de chicharrón en salsa verde',
+    en: 'Corn gordita stuffed with pork rind in green sauce',
+    ko: '녹색 소스를 곁들인 돼지껍질로 속을 채운 옥수수 고르디타',
+  },
+  'Flan Napolitano': {
+    es: 'Flan casero con caramelo',
+    en: 'Homemade flan with caramel',
+    ko: '캐러멜을 곁들인 집made 플랑',
+  },
+  'Pastel de Chocolate': {
+    es: 'Rebanada de pastel de chocolate',
+    en: 'Slice of chocolate cake',
+    ko: '초콜릿 케이크 한 조각',
+  },
+  'Extra Tortillas (4 pzs)': {
+    es: 'Tortillas de maíz adicionales',
+    en: 'Additional corn tortillas',
+    ko: '추가 옥수수 토르티야',
+  },
+  'Extra Guacamole': {
+    es: 'Porción de guacamole',
+    en: 'Portion of guacamole',
+    ko: '과카몰리 한 인분',
+  },
+  'Extra Frijoles': {
+    es: 'Porción adicional de frijoles',
+    en: 'Additional portion of beans',
+    ko: '추가 콩 한 인분',
+  },
+};
+
 export function useTranslations() {
   const { language } = useLanguage();
   const [loaded, setLoaded] = useState(false);
@@ -79,13 +204,21 @@ export function useTranslations() {
     return text;
   }, [language]);
 
-  const getItemDescription = useCallback((itemId: string, fallback?: string): string => {
+  const getItemDescription = useCallback((itemId: string, itemName?: string, fallback?: string): string => {
+    if (itemName && ITEM_DESCRIPTION_DICTIONARY[itemName]) {
+      const translated = ITEM_DESCRIPTION_DICTIONARY[itemName][language];
+      if (translated) return translated;
+    }
     const resolver = getTranslationResolver();
     const translated = resolver.getMenuItemDescription(itemId, language);
     return translated ?? fallback ?? '';
   }, [language]);
 
   const getCategoryName = useCallback((categoryCode: string, fallback?: string): string => {
+    const dict = CATEGORY_DICTIONARY[categoryCode];
+    if (dict && dict[language]) {
+      return dict[language];
+    }
     const resolver = getTranslationResolver();
     const translated = resolver.getCategoryDisplayName(categoryCode, language);
     return translated ?? fallback ?? categoryCode;

@@ -113,7 +113,7 @@ export const LandingView = ({
               </div>
               <div className="p-4 flex-1">
                 <h3 className="font-bold text-lg text-gray-800">{item.name}</h3>
-                <p className="text-sm text-gray-500 line-clamp-1">{getItemDescription(item.id, item.description)}</p>
+                <p className="text-sm text-gray-500 line-clamp-1">{getItemDescription(item.id, item.name, item.description)}</p>
                 <div className="flex items-center justify-between mt-1">
                   <p className="font-black text-xl" style={{ color: secondaryColor }}>${item.price}</p>
                   <span 
@@ -230,7 +230,7 @@ export const MenuView = ({
                 </div>
                 <div className="p-4 flex-1 flex flex-col justify-center">
                   <h4 className="font-bold text-gray-800 mb-1">{item.name}</h4>
-                  <p className="text-sm text-gray-500 line-clamp-4 leading-relaxed">{getItemDescription(item.id, item.description)}</p>
+                  <p className="text-sm text-gray-500 line-clamp-4 leading-relaxed">{getItemDescription(item.id, item.name, item.description)}</p>
                 </div>
                 <div className="flex flex-col items-center gap-2 shrink-0 pr-4">
                   {item.isWeightBased ? (
