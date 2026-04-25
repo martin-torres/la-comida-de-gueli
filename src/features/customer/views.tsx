@@ -77,7 +77,7 @@ export const LandingView = ({
         <div className="flex items-center gap-3">
           <span className="w-2 h-8 rounded-full" style={{ backgroundColor: primaryColor }}></span>
           <h2 className="text-xl font-bold text-gray-800 italic">
-            {t('promotionsTitle', settings?.uiText?.promotionsTitle || 'Promociones')}
+            {t('promotionsTitle', 'Promotions')}
           </h2>
         </div>
         <div className="flex items-center gap-3">
