@@ -172,6 +172,29 @@ const ITEM_DESCRIPTION_DICTIONARY: Record<string, Record<SupportedLanguage, stri
     en: 'Additional portion of beans',
     ko: '추가 콩 한 인분',
   },
+  'COKE_FREE': {
+    es: '¡Coca-Cola GRATIS en botella 350ml con tu pedido de más de $100 antes de las 12pm!',
+    en: 'FREE Coca-Cola 350ml bottle with orders over $100 before 12pm!',
+    ko: '오후 12시 이전 $100 이상 주문 시 물 코카콜라 350ml!',
+  },
+  'COMIDA 3 TIEMPOS': {
+    es: 'Comida Completa: Sopa + Plato fuerte + Postre + Tortillas + Salsa + Agua de Jamaica - ¡Solo $150!',
+    en: 'Complete Meal: Soup + Main Course + Dessert + Tortillas + Salsa + Jamaica Water - Only $150!',
+    ko: '완전한 식사: 수프 + 메인 요리 + 디저트 + 토르티야 + 살사 + 하이비스커스 음료 - $150!',
+  },
+};
+
+const ITEM_NAME_DICTIONARY: Record<string, Record<SupportedLanguage, string>> = {
+  'COKE_FREE': {
+    es: 'Coca-Cola GRATIS',
+    en: 'FREE Coca-Cola',
+    ko: '묣 코카콜라',
+  },
+  'COMIDA 3 TIEMPOS': {
+    es: 'Comida 3 Tiempos',
+    en: '3-Course Meal',
+    ko: '3코스 식사',
+  },
 };
 
 export function useTranslations() {
@@ -224,6 +247,14 @@ export function useTranslations() {
     return translated ?? fallback ?? categoryCode;
   }, [language]);
 
+  const getItemName = useCallback((itemName: string): string => {
+    const dict = ITEM_NAME_DICTIONARY[itemName];
+    if (dict && dict[language]) {
+      return dict[language];
+    }
+    return itemName;
+  }, [language]);
+
   return {
     language,
     loaded,
@@ -231,5 +262,6 @@ export function useTranslations() {
     t,
     getItemDescription,
     getCategoryName,
+    getItemName,
   };
 }

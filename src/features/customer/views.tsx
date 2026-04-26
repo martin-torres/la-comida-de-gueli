@@ -47,7 +47,7 @@ export const LandingView = ({
   primaryColor?: string;
   secondaryColor?: string;
 }) => {
-  const { t, getItemDescription } = useTranslations();
+  const { t, getItemDescription, getItemName } = useTranslations();
 
   return (
     <div className="animate-in fade-in slide-in-from-bottom-4 duration-500">
@@ -112,7 +112,7 @@ export const LandingView = ({
                 )}
               </div>
               <div className="p-4 flex-1">
-                <h3 className="font-bold text-lg text-gray-800">{item.name}</h3>
+                <h3 className="font-bold text-lg text-gray-800">{getItemName(item.name)}</h3>
                 <p className="text-sm text-gray-500 line-clamp-1">{getItemDescription(item.id, item.name, item.description)}</p>
                 <div className="flex items-center justify-between mt-1">
                   <p className="font-black text-xl" style={{ color: secondaryColor }}>${item.price}</p>
@@ -141,7 +141,7 @@ export const MenuView = ({
   primaryColor = '#f59e0b',
   secondaryColor = '#ea580c',
 }: any) => {
-  const { t, getItemDescription } = useTranslations();
+  const { t, getItemDescription, getItemName } = useTranslations();
   const categories = settings?.categories || [];
   const [selectedCategory, setSelectedCategory] = React.useState(categories[0]?.code || 'promo');
   const [selectedWeightItem, setSelectedWeightItem] = React.useState<any>(null);
@@ -229,7 +229,7 @@ export const MenuView = ({
                   )}
                 </div>
                 <div className="p-4 flex-1 flex flex-col justify-center">
-                  <h4 className="font-bold text-gray-800 mb-1">{item.name}</h4>
+                  <h4 className="font-bold text-gray-800 mb-1">{getItemName(item.name)}</h4>
                   <p className="text-sm text-gray-500 line-clamp-4 leading-relaxed">{getItemDescription(item.id, item.name, item.description)}</p>
                 </div>
                 <div className="flex flex-col items-center gap-2 shrink-0 pr-4">
@@ -317,7 +317,7 @@ export const CheckoutView = ({
   primaryColor = '#f59e0b',
   secondaryColor = '#ea580c',
 }: any) => {
-  const { t } = useTranslations();
+  const { t, getItemName } = useTranslations();
   const recommended = (menuItems ?? []).filter(
     item =>
       item.category !== 'pollo' &&
@@ -353,7 +353,7 @@ export const CheckoutView = ({
                   <img src={item.image} className="w-full h-full object-cover" alt={item.name} />
                 </div>
                 <div className="flex-1 min-w-0">
-                  <h4 className="font-bold text-sm text-gray-800 truncate">{item.name}</h4>
+                  <h4 className="font-bold text-sm text-gray-800 truncate">{getItemName(item.name)}</h4>
                   <p className="text-xs font-black" style={{ color: secondaryColor }}>${item.price}</p>
                 </div>
                 <div className="flex items-center bg-gray-100 rounded-lg p-1">
@@ -398,7 +398,7 @@ export const CheckoutView = ({
                       </div>
                     )}
                   </div>
-                  <h4 className="text-[10px] font-bold text-gray-800 leading-tight mb-1 line-clamp-2">{item.name}</h4>
+                  <h4 className="text-[10px] font-bold text-gray-800 leading-tight mb-1 line-clamp-2">{getItemName(item.name)}</h4>
                 </div>
                 <div className="flex items-center justify-between mt-auto">
                   <span className="text-[10px] font-black text-black">${item.price}</span>
@@ -624,7 +624,7 @@ export const TrackingView = ({
   currency = 'MXN',
   uiText,
 }: any) => {
-  const { t } = useTranslations();
+  const { t, getItemName } = useTranslations();
   if (!currentOrder) return null;
   const statusSteps: OrderStatus[] = ['recibido', 'preparando', 'listo', 'en_camino', 'entregado'];
   const currentIdx = statusSteps.indexOf(currentOrder.status);
@@ -666,7 +666,7 @@ export const TrackingView = ({
         <div className="space-y-2">
           {currentOrder.items.map((item: any) => (
             <div key={item.id} className="flex justify-between text-sm font-bold">
-              <span className="text-gray-600 italic">{item.quantity}x {item.name}</span>
+                  <span className="text-gray-600 italic">{item.quantity}x {getItemName(item.name)}</span>
               <span className="font-black">${item.price * item.quantity}</span>
             </div>
           ))}
