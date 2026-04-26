@@ -7,9 +7,10 @@ import { OrdersPage } from './pages/OrdersPage';
 import { PromotionsPage } from './pages/PromotionsPage';
 import { SettingsPage } from './pages/SettingsPage';
 import { InventoryPage } from './pages/InventoryPage';
+import { LeadsPage } from './pages/LeadsPage';
 import { menuApi, ordersApi, settingsApi, promosApi, adminAuth } from './adminApi';
 
-type AdminPage = 'dashboard' | 'menu' | 'orders' | 'promotions' | 'settings' | 'inventory';
+type AdminPage = 'dashboard' | 'menu' | 'orders' | 'promotions' | 'settings' | 'inventory' | 'leads';
 
 interface AdminModuleProps {
   settings: any;
@@ -272,6 +273,8 @@ export const AdminModule = ({
             onUpdateStock={handleUpdateStock}
           />
         );
+      case 'leads':
+        return <LeadsPage />;
       default:
         return <DashboardPage orders={orders} />;
     }

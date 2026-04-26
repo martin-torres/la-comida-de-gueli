@@ -7,6 +7,7 @@ import pb from './lib/pocketbase';
 import { calculateDeliveryFee, haversineKm } from './src/core/pricing';
 import { resolveUiSettings } from './src/core/uiSettings';
 import { LanguageProvider } from './src/contexts/LanguageContext';
+import { LandingPage } from './src/features/marketing/LandingPage';
 import {
   LoadingView,
   ErrorView,
@@ -26,6 +27,13 @@ type ViewMode = 'customer' | 'admin' | 'data' | 'dashboard';
 type CustomerScreen = 'landing' | 'menu' | 'cart' | 'checkout' | 'tracking';
 
 const App: React.FC = () => {
+  const pathname = window.location.pathname;
+  const isMarketingPage = pathname === '/monterrey-mundial-2026' || pathname === '/mundial-2026';
+
+  if (isMarketingPage) {
+    return <LandingPage />;
+  }
+
   // Phase 1: UI State Management
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);

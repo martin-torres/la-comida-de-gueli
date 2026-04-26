@@ -6,6 +6,7 @@ import {
   Percent,
   Settings,
   Package,
+  Users,
   ChevronLeft,
   ChevronRight,
   Menu,
@@ -13,7 +14,7 @@ import {
 } from 'lucide-react';
 import { AdminErrorBoundary } from './ErrorBoundary';
 
-type AdminPage = 'dashboard' | 'menu' | 'orders' | 'promotions' | 'settings' | 'inventory';
+type AdminPage = 'dashboard' | 'menu' | 'orders' | 'promotions' | 'settings' | 'inventory' | 'leads';
 
 interface NavItem {
   id: AdminPage;
@@ -27,6 +28,7 @@ const navItems: NavItem[] = [
   { id: 'orders', label: 'Órdenes', icon: <ShoppingCart className="w-5 h-5" /> },
   { id: 'promotions', label: 'Promociones', icon: <Percent className="w-5 h-5" /> },
   { id: 'inventory', label: 'Inventario', icon: <Package className="w-5 h-5" /> },
+  { id: 'leads', label: 'Leads', icon: <Users className="w-5 h-5" /> },
   { id: 'settings', label: 'Configuración', icon: <Settings className="w-5 h-5" /> },
 ];
 
