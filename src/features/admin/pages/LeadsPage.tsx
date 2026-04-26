@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { leadsRepository } from '../../../data/pocketbase';
 import type { Lead, LeadStatus, LeadSource } from '../../../data/contracts/leads-repo';
-import { Search, Filter, Phone, Mail, Calendar, TrendingUp, Users, Target } from 'lucide-react';
+import { LeadDetail } from '../components/LeadDetail';
+import { Search, Phone, Mail, Calendar, TrendingUp, Users, Target } from 'lucide-react';
 
 const STATUS_LABELS: Record<LeadStatus, string> = {
   new: 'Nuevo',
@@ -36,6 +37,7 @@ export const LeadsPage: React.FC = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const [statusFilter, setStatusFilter] = useState<LeadStatus | ''>('');
   const [sortBy, setSortBy] = useState<'score' | 'date'>('score');
+  const [selectedLeadId, setSelectedLeadId] = useState<string | null>(null);
 
   useEffect(() => {
     loadLeads();
@@ -204,7 +206,11 @@ export const LeadsPage: React.FC = () => {
                 </tr>
               ) : (
                 filteredLeads.map((lead) => (
-                  <tr key={lead.id} className="hover:bg-gray-50 transition-colors">
+                  <tr
+                    key={lead.id}
+                    className="hover:bg-gray-50 transition-colors cursor-pointer"
+                    onClick={() => setSelectedLeadId(lead.id)}
+                  >
                     <td className="px-4 py-3">
                       <div className="font-medium text-gray-900">{lead.restaurant_name}</div>
                       <div className="text-sm text-gray-500">
@@ -257,6 +263,14 @@ export const LeadsPage: React.FC = () => {
           </table>
         </div>
       </div>
+
+      {selectedLeadId && (
+        <LeadDetail
+          leadId={selectedLeadId}
+          onClose={() => setSelectedLeadId(null)}
+          onUpdate={loadLeads}
+        />
+      )}
     </div>
   );
 };

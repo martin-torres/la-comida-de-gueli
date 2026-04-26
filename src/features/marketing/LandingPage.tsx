@@ -3,13 +3,15 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Quiz } from './components/Quiz';
 import { Results } from './components/Results';
 import { LeadForm } from './components/LeadForm';
+import { CalendlyEmbed } from './components/CalendlyEmbed';
 import type { LeadFormData } from './components/LeadForm';
 import type { QuizAnswers } from './lib/scoring';
 import { calculateScore } from './lib/scoring';
+import { generateScorecardPDF } from './lib/pdfGenerator';
 import { leadsRepository } from '../../data/pocketbase';
 import type { ScoreResult } from './lib/scoring';
 
-type Step = 'hero' | 'quiz' | 'results' | 'form' | 'booking' | 'thankyou';
+type Step = 'hero' | 'quiz' | 'results' | 'form' | 'thankyou';
 
 export const LandingPage: React.FC = () => {
   const [step, setStep] = React.useState<Step>('hero');
@@ -17,6 +19,8 @@ export const LandingPage: React.FC = () => {
   const [score, setScore] = React.useState<ScoreResult | null>(null);
   const [isSubmitting, setIsSubmitting] = React.useState(false);
   const [leadId, setLeadId] = React.useState<string | null>(null);
+  const [showCalendly, setShowCalendly] = React.useState(false);
+  const [submittedFormData, setSubmittedFormData] = React.useState<LeadFormData | null>(null);
 
   const handleQuizComplete = (quizAnswers: QuizAnswers) => {
     setAnswers(quizAnswers);
@@ -37,7 +41,9 @@ export const LandingPage: React.FC = () => {
   };
 
   const handleDownloadPDF = () => {
-    alert('PDF Scorecard: Funcionalidad en desarrollo. Te enviaremos el PDF por correo.');
+    if (score) {
+      generateScorecardPDF(score, submittedFormData?.restaurant_name || 'Mi Restaurante', submittedFormData?.owner_name || '');
+    }
   };
 
   const handleFormSubmit = async (formData: LeadFormData) => {
@@ -68,6 +74,7 @@ export const LandingPage: React.FC = () => {
       });
 
       setLeadId(lead.id);
+      setSubmittedFormData(formData);
       setStep('thankyou');
       window.scrollTo({ top: 0, behavior: 'smooth' });
     } catch (error) {
@@ -250,8 +257,14 @@ export const LandingPage: React.FC = () => {
               </p>
               <div className="space-y-4">
                 <button
-                  onClick={() => setStep('hero')}
+                  onClick={() => setShowCalendly(true)}
                   className="w-full px-6 py-4 bg-gradient-to-r from-amber-500 to-orange-500 text-white font-bold rounded-xl hover:from-amber-600 hover:to-orange-600 transition-all shadow-lg"
+                >
+                  Agendar demo ahora →
+                </button>
+                <button
+                  onClick={() => setStep('hero')}
+                  className="w-full px-6 py-4 bg-gray-100 text-gray-700 font-bold rounded-xl hover:bg-gray-200 transition-all"
                 >
                   Volver al inicio
                 </button>
@@ -272,6 +285,14 @@ export const LandingPage: React.FC = () => {
           </motion.div>
         )}
       </AnimatePresence>
+
+      {showCalendly && submittedFormData && (
+        <CalendlyEmbed
+          prefillName={submittedFormData.owner_name}
+          prefillEmail={submittedFormData.email}
+          onClose={() => setShowCalendly(false)}
+        />
+      )}
     </div>
   );
 };
